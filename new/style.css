@@ -1,0 +1,54 @@
+button {
+	background-color: crimson;
+	color: white;
+	align-content: center;
+	width: 100%;
+	padding: 15px;
+	border: none;
+	border-radius: 10px;
+}
+
+form.container {
+    width: 400px;
+    max-width: 400px;
+    margin: auto;
+    padding: 4rem;
+    padding-top: 2rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: lightslategrey;
+}
+p {
+	color: white;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+div {
+	text-align: center;
+}
+.signup {
+	color: white;
+}
+.login {
+	color: white;
+}
+.password{
+	width: 100%;
+	padding: 12px;
+	border-radius: 10px;
+	border: none;
+}
+.email {
+	width: 100%;
+	padding: 12px;
+	border-radius: 10px;
+	border: none;
+}
+label{
+	color: white;
+}
