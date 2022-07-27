@@ -1,3 +1,30 @@
+<?php 
+include "./sidebar/config.php";
+error_reporting(0);
+
+if (isset($_POST['signup'])){ 
+	
+	$password = $_POST['password'];
+	$email = $_POST['email'];
+
+	$ENTER = "SELECT * FROM login WHERE email='$email'";
+	$result = mysqli_query($conn, $ENTER);
+  
+	if(!$result->num_rows > 0 ){
+		$ENTER = "INSERT INTO login(email,password) values('$email' ,'$password')";
+	$result= mysqli_query($conn,$ENTER);
+		echo mysqli_error($conn);
+	if ($result){	
+	
+		echo "<script>alert('Wow! User Registration Completed.')</script>";
+	}
+}
+	else {
+			echo "<script>alert('Woops! Email Already Exists.')</script>";
+		}
+	
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +36,7 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<form class = "container">
+	<form class = "container" method="post" action="">
 		<div>
 			<label class="signup">
 				<h1>Sign up</h1>
@@ -19,7 +46,7 @@
 			
 		<label>Email</label>
 		<div class="input-group mb-3">
-          <input type="email" class="form-control" name = "email"  required>
+          <input type="email" class="form-control" name = "email"  id="email" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -29,7 +56,7 @@
 
 		<label>Password</label><br>
 		<div class="input-group mb-3">
-		<input type="password"  class="form-control"  required id="password">	
+		<input type="password"  class="form-control" name="password" required id="password">	
 		<div class="input-group-append">
             <div class="input-group-text">
 		<span class="far fa-eye" id="togglePassword" style=" cursor: pointer;"></span>
@@ -37,7 +64,7 @@
           </div>
         </div>
 		
-		<button type="submit" class="btn btn-danger btn-block" >SIGN UP</button>
+		<button type="submit" class="btn btn-danger btn-block" name="signup" >SIGN UP</button>
 
 
 

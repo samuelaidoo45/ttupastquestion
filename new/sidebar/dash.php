@@ -1,7 +1,16 @@
+<?php 
+include "./config.php";
+session_start();
+
+if (!isset($_SESSION['email'])) {
+
+     header("Location: ../login.php");
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Sidebar</title>
+  	<title>Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -26,30 +35,33 @@
 				<div class="p-4">
 		  		<h1 style="color: white;">Main</h1>
 	        <ul class="list-unstyled components mb-5">
-	          <li>
-	            <a href="#"><span class="fa fa-dashboard mr-3"></span> Dashboard</a>
+	          <li class="active">
+	            <a href="index.php"><span class="fa fa-dashboard mr-3"></span> Dashboard</a>
 	          </li>
 	          <li>
 	              <a href="#"><span class="fa fa-user mr-3"></span> Users</a>
 	          </li>
 	          <li>
-              <a href="#"><span class="fa fa-upload mr-3"></span> Upload Questions</a>
+              <a href="upload.php"><span class="fa fa-upload mr-3"></span> Upload Questions</a>
 	          </li>
 	          <li>
-              <a href="#"><span class="fa fa-undo mr-3"></span> Update Questions</a>
+              <a href="update.php"><span class="fa fa-undo mr-3"></span> Update Questions</a>
 	          </li>
 	          <li>
-              <a href="#"><span class="fa fa-trash mr-3"></span> Delete Questions</a>
+              <a href="delete.php"><span class="fa fa-trash mr-3"></span> Delete Questions</a>
 	          </li>
 	          <li>
               <a href="#"><span class="fa fa-pencil mr-3"></span> Create Admin</a>
+	          </li>
+	          <li>
+              <a href="../logout.php"><span class="fa fa-sign-out mr-3"></span> Log Out</a>
 	          </li>
 	        </ul>			
     	</nav>
 
         <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5 pt-5">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div id="content" class="p-4 p-md-5 pt-5" >
+        <nav class="navbar navbar-expand-lg navbar-light"  style="background-color: grey;">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav" style="width: 100%">
@@ -64,17 +76,11 @@
      <div style="flex: 2;"></div>
      
      	<li class="nav-item">
-			   <div class="input-group">
-			  <div class="form-outline">
-			    <input type="search" class="form-control"  placeholder="search" />
-			  </div>
-			  <button type="button" >
-			    <i class="fa fa-search"></i>
-			  </button>
-			</div>
+			   <div class="input-group"><input class="form-control" type="text" name="valueToSearch"  >
+           <button type="submit" class="btn btn-primary" name="search"><i class="fa fa-search"></i></button></div>
      </li>
      	<li class="nav-item ">
-        	<img src="/contact_crud2/images/img3.jpg" width="30" height="30">
+        	
           <a class="navbar-brand" href="#">Admin</a>
         </li>
       </ul>
@@ -90,22 +96,22 @@
 </nav>
 <!-- cards -->
 <div style="display: flex;">
-<div class="card" style="width: 12rem; margin: 3rem;">
+<div class="card" style="width: 12rem; margin: 3rem;height: 12rem;">
   <div class="card-body" >
-    <img src="images/user.jpg" class="card-img-top" ><p>800</p>
+    <img src="images/user.jpg" class="card-img-top" style="height: 6rem;"><p>800</p>
     <h5 class="card-title" style="color: green; ">Users</h5>
   </div>
 </div>
-<div class="card" style="width: 12rem;  margin: 3rem;">
+<div class="card" style="width: 12rem;  margin: 3rem; height: 12rem;">
   <div class="card-body">
-    <img src="images/user.jpg" class="card-img-top" ><p>800</p>
+    <img src="images/user.jpg" class="card-img-top" style="height: 6rem;" ><p>800</p>
     <h5 class="card-title" style="color: green; ">Department</h5>
     
   </div>
 </div>
-<div class="card" style="width: 12rem;  margin: 3rem;">
+<div class="card" style="width: 12rem;  margin: 3rem;height: 12rem;">
   <div class="card-body">
-    <img src="images/user.jpg" class="card-img-top" ><p>800</p>
+    <img src="images/user.jpg" class="card-img-top" style="height: 6rem;"><p>800</p>
     <h5 class="card-title" style="color: green; ">Questions</h5>
     
   </div>

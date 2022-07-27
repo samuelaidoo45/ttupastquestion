@@ -1,3 +1,35 @@
+<?php 
+include "./sidebar/config.php";
+error_reporting(0);
+session_start();
+if(isset($_POST["login"])){
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $result = mysqli_query($conn, "SELECT * FROM login WHERE email = '$email'");
+    
+    $row = mysqli_fetch_assoc($result);
+    
+    if(mysqli_num_rows($result) > 0){
+      if($password == $row['password']){
+        $_SESSION["login"] = true;
+       
+        $_SESSION["email"] = $row["email"];
+        $_SESSION["id"] = $row["id"]; 
+
+        header("Location:../new/sidebar/dash.php");
+
+      }
+      else{
+        echo
+        "<script> alert('Wrong Password'); </script>";
+      }
+    }
+    else{
+      echo
+      "<script> alert('User Not Registered'); </script>";
+    }
+ }
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +43,7 @@
 
 </head>
 <body>
-	<form class = "container">
+	<form class = "container" method="post" action="">
 		<div>
 			<label class="login">
 				<h1>Login</h1>
@@ -30,7 +62,7 @@
 		
 		<label>Password</label><br>
 		<div class="input-group mb-3">
-		<input type="password"  class="form-control"  required id="password">	
+		<input type="password"  class="form-control" name="password" required id="password">	
 		<div class="input-group-append">
             <div class="input-group-text">
 		<span class="far fa-eye" id="togglePassword" style=" cursor: pointer;"></span>
@@ -38,7 +70,7 @@
           </div>
         </div>
 				
-		<button type="submit" class="btn btn-danger btn-block" >LOGIN</button>
+		<button type="submit" class="btn btn-danger btn-block" name="login" >LOGIN</button>
 	</form>
 <script type="text/javascript">
 	const togglePassword = document.querySelector('#togglePassword');
